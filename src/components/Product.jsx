@@ -14,7 +14,8 @@ function Product() {
             const response = await axios.get(
                 `https://fakestoreapi.com/products/${id}`,
             );
-            console.log(response.data);
+            // this will update the data
+            setProduct(response.data);
             // Homework to display data on page using bootstrap card
         } catch (error) {
             console.log("Something went wrong", error);
@@ -24,10 +25,22 @@ function Product() {
     useEffect(() => {
         // calling fetch product
         fetchProduct();
-    }, []);
+    }, [id]);
     return (
         <div>
-            <h1>Product Component {id}</h1>
+            <h1>Product Card {id}</h1>
+            {product && (
+                <div className="card col-3" style={{ width: "18rem" }}>
+                    <img src={product.image} className="card-img-top" />
+                    <div className="card-body">
+                        <h5 className="card-title">Title: {product.title}</h5>
+                        <p className="card-text">description: {product.description}</p>
+                        <p className="card-text">category: {product.category}</p>
+                        <p className="card-text">price: {product.price}</p>
+                        <p className="card-text">ratings: {product.ratings}</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
