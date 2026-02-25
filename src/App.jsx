@@ -12,11 +12,18 @@ import Contact from './components/Contact';
 import NotFound from './components/NotFound';
 import Reducer from './components/Reducer';
 import Memoization from './components/Memoization';
+import { ErrorBoundary } from 'react-error-boundary';
 
+function ErrorMessage({ error }) {
+  return (
+    <h1>Something went wrong</h1>
+  )
+}
 const router = createBrowserRouter([
   {
     path: '',
     element: <Layout />,
+    errorElement: <ErrorMessage />,
     children: [
       {
         index: true,
@@ -39,8 +46,8 @@ const router = createBrowserRouter([
         element: <Reducer />,
       },
       {
-        path:"memoization",
-        element:<Memoization/>
+        path: "memoization",
+        element: <Memoization />
       },
       {
         path: '*',        //* means hamare die hue page ke alawa koi bhi page search hota h  to kya show krna h
@@ -55,7 +62,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <ErrorBoundary FallbackComponent={ErrorBoundary}>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
     </>
   )
 }
