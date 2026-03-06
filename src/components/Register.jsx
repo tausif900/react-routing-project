@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 // Conditional rendering
 function Register() {
   const [name, setName] = useState('')
-  navigate = useNavigate()
+  const navigate = useNavigate()
   const redirect = () => {
     if (name) {
       navigate('/');
     } else {
-      navigate('contact')
+      navigate('/contact')
     }
   }
   return (
     <div>
-      Register
+      <h1>Register</h1>
       <button onClick={redirect}>Click</button>
     </div>
   )
