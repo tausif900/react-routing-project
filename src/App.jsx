@@ -19,6 +19,12 @@ function ErrorMessage({ error }) {
     <h1>Something went wrong</h1>
   )
 }
+// install react-router-dom
+// createBrouserRouter hepls to create routes and its return type is router.
+
+
+
+
 const router = createBrowserRouter([
   {
     path: '',
